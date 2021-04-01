@@ -1,0 +1,16 @@
+npm init -y
+tsc --init
+npm install nodemon concurrently
+then create src and build folders
+and edit tsconfig.json ...
+- uncomment "outDir" and point to "./src"
+- uncomment "rootir" and point to "./build"
+
+In the package.json, update the scripts entry to this ...
+  "scripts": {
+    "start:build": "tsc -w",
+    "start:run": "nodemon build/index.js",
+    "start": "concurrently npm:start:*"
+
+then when npm start is run it will tsc -w which will watch when ts files are saved and compile them automatically,
+and nodemon will automatically rerun the built js files
